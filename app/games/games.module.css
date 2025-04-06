@@ -1,0 +1,12 @@
+.mode {
+  user-select: none;
+  background-size: contain;
+  transition: all 200ms ease;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .mode:hover {
+    transform: translateX(6px);
+  }
+}

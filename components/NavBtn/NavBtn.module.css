@@ -1,0 +1,15 @@
+.link {
+    display: flex;
+    transition: ease 200ms all;
+    text-decoration: none;
+}
+
+.link:hover {
+    transform: translateY(-2px);
+}
+
+.current {
+    display: flex;
+    transform: translateY(-2px);
+    text-decoration: none;
+}

@@ -1,17 +1,25 @@
 import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
+import './app.module.css';
 
 import React from 'react';
-import { ColorSchemeScript, mantineHtmlProps, MantineProvider } from '@mantine/core';
+import { ColorSchemeScript, mantineHtmlProps, MantineProvider, Stack } from '@mantine/core';
+import { ModalsProvider } from '@mantine/modals';
+import { Notifications } from '@mantine/notifications';
+import FlexSpacer from '@/components/FlexSpacer/FlexSpacer';
+import Footer from '@/components/Footer/Footer';
+import { Header } from '@/components/Header/Header';
+import UserProvider from '@/components/UserProvider/UserProvider';
 import { theme } from '../theme';
 
 export const metadata = {
-  title: 'Mantine Next.js template',
-  description: 'I am using Mantine with Next.js!',
+  title: 'Kratos',
+  description: 'похуй',
 };
 
 export default function RootLayout({ children }: { children: any }) {
   return (
-    <html lang="en" {...mantineHtmlProps}>
+    <html lang="ru" {...mantineHtmlProps}>
       <head>
         <ColorSchemeScript />
         <link rel="shortcut icon" href="/favicon.svg" />
@@ -21,7 +29,19 @@ export default function RootLayout({ children }: { children: any }) {
         />
       </head>
       <body>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <MantineProvider theme={theme} defaultColorScheme="dark">
+          <Notifications position="bottom-center" color="kratos" limit={3} autoClose={5000} />
+          <ModalsProvider>
+            <UserProvider>
+              <Stack mih="100dvh">
+                <Header />
+                {children}
+                <FlexSpacer />
+                <Footer />
+              </Stack>
+            </UserProvider>
+          </ModalsProvider>
+        </MantineProvider>
       </body>
     </html>
   );
