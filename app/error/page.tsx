@@ -1,12 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { IconError404, IconX } from '@tabler/icons-react';
-import { Stack, Text, Title } from '@mantine/core';
+import { Loader, Stack, Text, Title } from '@mantine/core';
 
-export default function ErrorPage() {
+function ErrorDisplay() {
   const params = useSearchParams();
   const [code, setCode] = useState(params.get('code') || 'ERR_UNKNOWN');
 
@@ -36,5 +36,13 @@ export default function ErrorPage() {
         </>
       )}
     </Stack>
+  );
+}
+
+export default function ErrorPage() {
+  return (
+    <Suspense fallback={<Loader type="dots" />}>
+      <ErrorDisplay />
+    </Suspense>
   );
 }

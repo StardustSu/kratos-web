@@ -21,6 +21,22 @@ export default function HomePage() {
       .then((data) => setNews(data.data));
   });
 
+  const content = (limit: number) => {
+    return news.map((post, i) => {
+      return (
+        <Stack key={i}>
+          <Title size="lg">{post.Title}</Title>
+          <Text size="sm">
+            {text_truncate(post.Content, limit)}{' '}
+            <Link href={post.Link || '#'} target="_blank">
+              {'>'} Читать полностью
+            </Link>
+          </Text>
+        </Stack>
+      );
+    });
+  };
+
   return (
     <>
       <Group px="xl" justify="center">
@@ -29,23 +45,18 @@ export default function HomePage() {
             <Loader type="dots" />
           </Center>
         ) : (
-          <Stack bg="#2f2f2f" maw="70%" p="md" gap="16px">
-            {news.map((post, i) => {
-              return (
-                <Stack key={i}>
-                  <Title size="lg">{post.Title}</Title>
-                  <Text size="sm">
-                    {text_truncate(post.Content, 255)}{' '}
-                    <Link href={post.Link || '#'} target="_blank">
-                      {'>'} Читать полностью
-                    </Link>
-                  </Text>
-                </Stack>
-              );
-            })}
-          </Stack>
+          <>
+            <Stack bg="#2f2f2f" maw="70%" p="md" gap="16px" visibleFrom="sm">
+              {content(255)}
+            </Stack>
+            <Stack bg="#2f2f2f" maw="70%" p="md" gap="16px" hiddenFrom="sm">
+              {content(100)}
+            </Stack>
+          </>
         )}
-        <InfoBar />
+        <div className="mantine-visible-from-sm">
+          <InfoBar />
+        </div>
       </Group>
     </>
   );
