@@ -20,18 +20,26 @@ export default function CheckBill() {
           setStatus(data.status);
           if (data.status != 0) clearInterval(int);
         })
-        .catch(() => setStatus(-1));
+        .catch(() => setStatus(-100));
     }, 1_500);
 
     return () => clearInterval(int);
-  });
+  }, []);
 
   return (
     <Stack mt={32} align="center" ta="center">
-      {status == -1 && (
+      {status == -100 && (
         <>
           <Loader color="red" type="dots" />
           <Text>Произошла ошибка при получении статуса платежа. Повторяем...</Text>
+        </>
+      )}
+      {status == -1 && (
+        <>
+          <IconX size={64} color="red" />
+          <Title>Вот досада!</Title>
+          <Text>Мы не нашли нужного платежа.</Text>
+          <Link href="/store">Попробовать еще раз</Link>
         </>
       )}
       {status == 0 && (

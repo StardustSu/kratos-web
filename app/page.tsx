@@ -19,7 +19,7 @@ export default function HomePage() {
     fetch('https://content.lampamc.ru/items/Kratos_News?sort=-date_created&limit=5')
       .then((res) => res.json())
       .then((data) => setNews(data.data));
-  });
+  }, []);
 
   const content = (limit: number) => {
     return news.map((post, i) => {

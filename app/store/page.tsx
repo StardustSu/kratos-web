@@ -28,6 +28,7 @@ interface Product {
   picture: string;
   sale: boolean;
   old_price?: number;
+  description: string;
 }
 
 const validateEmail = (email: string) => {
@@ -81,6 +82,7 @@ export default function HomePage() {
     <>
       <Modal opened={opened != -1} onClose={() => setOpened(-1)} title="Покупка" centered>
         <Group gap="md">
+          <Text size="sm" c='#999'>{products[opened]?.description}</Text>
           <TextInput
             autoCapitalize="off"
             size="md"

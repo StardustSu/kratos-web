@@ -7,7 +7,6 @@ import { IconArrowRight } from '@tabler/icons-react';
 import { Button, Center, Flex, Group, Loader, Spoiler, Stack, Text, Title } from '@mantine/core';
 import FlexSpacer from '@/components/FlexSpacer/FlexSpacer';
 import InfoBar from '@/components/InfoBar/InfoBar';
-import WhitelistButton from '@/components/WhitelistButton';
 import classes from './games.module.css';
 
 interface Mode {
@@ -50,7 +49,7 @@ export default function HomePage() {
               style={{ borderRadius: '16px', border: '1px solid #525252' }}
             >
               <Image
-                src={modes[0].picture}
+                src={"https://storage.kratosmc.ru/pics/PrimaryGame.png"}
                 height={240}
                 width={600}
                 alt="product"
@@ -87,8 +86,10 @@ export default function HomePage() {
                         onClick={() => {
                           setSel(mode);
                         }}
+                        w={300}
+                        h={60}
                       >
-                        {mode.title}
+                        {/* {mode.title} */}
                       </Flex>
                     );
                   })}
@@ -109,18 +110,31 @@ export default function HomePage() {
                   w="80%"
                   px="32px"
                   py="16px"
-                  bg={`url(${mode.picture})`}
+                  // bg={`url(${mode.picture})`}
                   bgp="center"
                   bgsz="cover"
                   style={{
                     borderRadius: '8px',
+                    border: '1px solid #1e1e1e',
+                    backgroundColor: '#343434',
                   }}
                   ff="Unbounded-Medium, Inter, sans-serif"
                   onClick={() => {
                     setSel(mode);
                   }}
                 >
-                  {mode.title}
+                  <Image
+                    width={400}
+                    height={56}
+                    src={mode.picture}
+                    alt={mode.title}
+                    style={{
+                      width: '100%',
+                      aspectRatio: '1/1',
+                      borderRadius: '12px',
+                    }}
+                  />
+                  {/* {mode.title} */}
                   <Spoiler
                     maxHeight={38}
                     hideLabel={'Скрыть'}

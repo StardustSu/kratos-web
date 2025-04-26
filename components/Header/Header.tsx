@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import {
   IconBrandWikipedia,
   IconDashboard,
@@ -22,6 +23,7 @@ import {
   Space,
   Stack,
   TextInput,
+  Title,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import FlexSpacer from '../FlexSpacer/FlexSpacer';
@@ -31,6 +33,8 @@ import classes from './Header.module.css';
 
 export function Header() {
   const user = useUser();
+  const pathname = usePathname();
+  const [genesis, setGenesis] = useState(false);
   const [nickname, setNickname] = useState('');
   const [modalLoading, setModalLoading] = useState(false);
   const [opened, { open, close }] = useDisclosure(false);
@@ -43,6 +47,10 @@ export function Header() {
     close();
     setModalLoading(false);
   };
+
+  useEffect(() => {
+    setGenesis(pathname.startsWith('/genesis/'));
+  }, [pathname]);
 
   return (
     <>
@@ -104,38 +112,46 @@ export function Header() {
       <Stack mt={16} gap="xs" align="center" visibleFrom="sm" mb="md">
         <Group w="70%" bg="#1b1b1b" p="sm" className={classes.header}>
           <Link href="/" className={classes.logo}>
-            <Image src="/logo.svg" width={200} height={48} alt="logo" />
+            <Image src="https://storage.kratosmc.ru/logo.svg" width={200} height={48} alt="logo" />
           </Link>
           <FlexSpacer />
-          {user.name || 'Вы'}
-          <Image
-            src={`https://mc-heads.net/body/${user.name || 'Steve'}`}
-            alt="skin"
-            height={48}
-            width={21}
-            objectFit="cover"
-          />
-          <Button variant="subtle" onClick={open}>
-            <IconLogin />
-          </Button>
+          {!genesis ? (
+            <>
+              {user.name || 'Вы'}
+              <Image
+                src={`https://mc-heads.net/body/${user.name || 'Steve'}`}
+                alt="skin"
+                height={48}
+                width={21}
+                objectFit="cover"
+              />
+              <Button variant="subtle" onClick={open}>
+                <IconLogin />
+              </Button>
+            </>
+          ) : (
+            <Title>Genesis</Title>
+          )}
         </Group>
-        <Group justify="center" bg="#1b1b1b" p="sm" px="xl" className={classes.header}>
-          <NavBtn to="/">
-            <IconDashboard className={classes['icon-right']} /> Главная
-          </NavBtn>
-          <NavBtn to="/games">
-            <IconDeviceGamepad className={classes['icon-right']} /> Режимы
-          </NavBtn>
-          {/* <NavBtn to="/leaderboards">
+        {!genesis && (
+          <Group justify="center" bg="#1b1b1b" p="sm" px="xl" className={classes.header}>
+            <NavBtn to="/">
+              <IconDashboard className={classes['icon-right']} /> Главная
+            </NavBtn>
+            <NavBtn to="/games">
+              <IconDeviceGamepad className={classes['icon-right']} /> Режимы
+            </NavBtn>
+            {/* <NavBtn to="/leaderboards">
             <IconGraph className={classes['icon-right']} /> Таблица лидеров
           </NavBtn> */}
-          <NavBtn to="/wiki">
-            <IconMailQuestion className={classes['icon-right']} /> Wiki
-          </NavBtn>
-          <NavBtn to="/store">
-            <IconShoppingBag className={classes['icon-right']} /> Магазин
-          </NavBtn>
-        </Group>
+            <NavBtn to="/wiki">
+              <IconMailQuestion className={classes['icon-right']} /> Wiki
+            </NavBtn>
+            <NavBtn to="/store">
+              <IconShoppingBag className={classes['icon-right']} /> Магазин
+            </NavBtn>
+          </Group>
+        )}
       </Stack>
       <Stack mt={16} gap="xs" align="center" hiddenFrom="sm" mb="md">
         <Group w="70%" bg="#1b1b1b" p="sm" className={classes.header}>

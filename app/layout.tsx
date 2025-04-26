@@ -14,7 +14,7 @@ import { theme } from '../theme';
 
 export const metadata = {
   title: 'Kratos',
-  description: 'похуй',
+  description: 'Твой лучший сервер Minecraft.',
 };
 
 export default function RootLayout({ children }: { children: any }) {
