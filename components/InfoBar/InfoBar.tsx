@@ -15,13 +15,16 @@ export default function InfoBar() {
     setTimeout(() => setCopy(false), 900);
   };
 
+  const refresh = () => {
+    fetch('https://api.kratosmc.ru/info/online')
+      .then((data) => data.json())
+      .then((data) => setOnline(data.online || 0))
+      .catch(() => {});
+  };
+
   useEffect(() => {
-    const to = setInterval(() => {
-      fetch('https://api.kratosmc.ru/info/online')
-        .then((data) => data.json())
-        .then((data) => setOnline(data.count || 0))
-        .catch(() => {});
-    }, 5_000);
+    refresh();
+    const to = setInterval(refresh, 5_000);
     return () => clearInterval(to);
   }, []);
 

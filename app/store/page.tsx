@@ -14,6 +14,7 @@ import {
   Modal,
   Text,
   TextInput,
+  TypographyStylesProvider,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useUser } from '@/components/UserProvider/UserContext';
@@ -82,7 +83,7 @@ export default function HomePage() {
     <>
       <Modal opened={opened != -1} onClose={() => setOpened(-1)} title="Покупка" centered>
         <Group gap="md">
-          <Text size="sm" c='#999'>{products[opened]?.description}</Text>
+          {/* <Text size="sm" c='#999'>{products[opened]?.description}</Text> */}
           <TextInput
             autoCapitalize="off"
             size="md"
@@ -140,7 +141,12 @@ export default function HomePage() {
             <div className={free ? classes.animate : ''}>
               <Card withBorder>
                 <Card.Section>
-                  <Image src={products[0].picture} height={160} width={260} alt="image" />
+                  <Image
+                    src={'https://storage.kratosmc.ru/pics/store/free.png'}
+                    height={160}
+                    width={260}
+                    alt="image"
+                  />
                 </Card.Section>
                 <Group justify="space-between" mt="md" mb="xs">
                   <Text fw={500}>Бесплатная проходка</Text>
