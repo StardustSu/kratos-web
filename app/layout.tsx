@@ -13,8 +13,10 @@ import UserProvider from '@/components/UserProvider/UserProvider';
 import { theme } from '../theme';
 
 export const metadata = {
-  title: 'Kratos',
-  description: 'Твой лучший сервер Minecraft.',
+  title: 'KratosMC — Твое ванильное выживание с мини-играми для отдыха',
+  description:
+    'KratosMC — русский Minecraft-сервер с ванильным выживанием, мини-играми (DeathSwap, BlockShuffle, FreezeTag, HotPotato) и событиями от стримеров. IP: play.kratosmc.ru',
+  //keywords: ''
 };
 
 export default function RootLayout({ children }: { children: any }) {
@@ -22,11 +24,19 @@ export default function RootLayout({ children }: { children: any }) {
     <html lang="ru" {...mantineHtmlProps}>
       <head>
         <ColorSchemeScript />
-        <link rel="shortcut icon" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.png" />
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
         />
+        <meta
+          name="keywords"
+          content="Minecraft, KratosMC, ванильное выживание, русский Minecraft-сервер, мини-игры Minecraft, DeathSwap, BlockShuffle, FreezeTag, HotPotato, стримеры Minecraft, PvE, PvP, ивенты, выживание, кастомные режимы"
+        />
+        <meta name="author" content="KratosMC Team, Stardust, Nico" />
+        <meta name="language" content="ru" />
+        <meta name="geo.region" content="RU" />
+        <meta name="geo.placename" content="Россия" />
       </head>
       <body>
         <MantineProvider theme={theme} defaultColorScheme="dark">
