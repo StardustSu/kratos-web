@@ -39,7 +39,7 @@ export default function HomePage() {
 
   return (
     <>
-      <Title ta="center">Начни играть с нами уже сейчас!</Title>
+      <Title ta="center">Заходи на Кратос уже сейчас!</Title>
       <Group px="xl" justify="center">
         {news.length == 0 ? (
           <Center>

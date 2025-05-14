@@ -13,10 +13,9 @@ import UserProvider from '@/components/UserProvider/UserProvider';
 import { theme } from '../theme';
 
 export const metadata = {
-  title: 'KratosMC — Твое ванильное выживание с мини-играми для отдыха',
+  title: 'Кратос — Твой сервер с ванильным выживанием и мини-играми',
   description:
-    'KratosMC — русский Minecraft-сервер с ванильным выживанием, мини-играми (DeathSwap, BlockShuffle, FreezeTag, HotPotato) и событиями от стримеров. IP: play.kratosmc.ru',
-  //keywords: ''
+    'Кратос — русский Minecraft-сервер с ванильным выживанием, мини-играми (DeathSwap, BlockShuffle, FreezeTag, HotPotato) и событиями от стримеров. IP: play.kratosmc.ru',
 };
 
 export default function RootLayout({ children }: { children: any }) {
@@ -31,7 +30,7 @@ export default function RootLayout({ children }: { children: any }) {
         />
         <meta
           name="keywords"
-          content="Minecraft, KratosMC, ванильное выживание, русский Minecraft-сервер, мини-игры Minecraft, DeathSwap, BlockShuffle, FreezeTag, HotPotato, стримеры Minecraft, PvE, PvP, ивенты, выживание, кастомные режимы"
+          content="Minecraft, KratosMC, кратос, ванильное выживание, русский Minecraft-сервер, мини-игры Minecraft, DeathSwap, BlockShuffle, FreezeTag, HotPotato, стримеры Minecraft, PvE, PvP, ивенты, выживание, кастомные режимы"
         />
         <meta name="author" content="KratosMC Team, Stardust, Nico" />
         <meta name="language" content="ru" />
